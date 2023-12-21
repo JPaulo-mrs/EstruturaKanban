@@ -22,9 +22,12 @@
     <!-- Conteúdo principal -->
     
     <div class="board">
-      <p class="board-name">QUADRO DE GERENCIAMENTO DE ATIVIDADES</p>
       <!-- Logo da Focus -->
       <img class="logo-image" src="images/logo negativa vertical.png" alt="Logo Focus Consultoria">
+
+      <p class="board-name">QUADRO DE GERENCIAMENTO DE ATIVIDADES</p>
+      
+      
 
       <!-- Seção de colunas -->
       <div class="lanes">
@@ -37,7 +40,7 @@
           <!-- Botão de expandir o card -->
           <button class="item" onclick="containerCard(this)" draggable="true">
             <p class="tasktext">Adm Fin</p>
-            <div class="taskCircle" style="background: #737373"></div>
+            <div class="taskCircle" style="background: #495766"></div>
           </button>
           <button class="item" onclick="containerCard(this)" draggable="true">
             <p class="tasktext">Marketing</p>
@@ -45,7 +48,7 @@
           </button>
           <button class="item" onclick="containerCard(this)" draggable="true">
             <p class="tasktext">GEP</p>
-            <div class="taskCircle" style="background: #ff3131"></div>
+            <div class="taskCircle" style="background: #e53324"></div>
           </button>
           <button class="item" onclick="containerCard(this)" draggable="true">
             <p class="tasktext">Projetos</p>
@@ -53,14 +56,14 @@
           </button>
           <button class="item" onclick="containerCard(this)" draggable="true">
             <p class="tasktext">Comercial</p>
-            <div class="taskCircle" style="background: #0097b2"></div>
+            <div class="taskCircle" style="background: #29dbe2"></div>
           </button>
           <button class="item" onclick="containerCard(this)" draggable="true">
             <p class="tasktext">Presidência</p>
             <div class="taskCircle" style="background: #8b5fa4"></div>
           </button>
           <!-- Botão para criar novas tarefas -->
-          <button class="taskbutton" onclick="openDialog()">
+          <button class="taskbutton" onclick="criarNova()">
             <p class="tasktext">Adicionar Tarefa</p>
             <div class="plus"></div>
           </button>
@@ -83,27 +86,42 @@
   </body>
 </html>
 
-<!-- Caixa de diálogo para adicionar tarefas -->
-<div id="dialog" class="dialog">
-  <div class="dialog-content">
-      <label class="dialog-text" for="taskName">Nome da Tarefa:</label>
-      <input class="taskname-box" type="text" id="taskName" placeholder=" Digite o nome da tarefa">
-
-      <br>
-      <br>
-      <br>
-      <!--&#8203 é o código para um caractere invisível-->
-      <!--Isso é uma gambiarra para alinhar as caixas de texto, achar um jeito melhor se der tempo-->
-      <label class="dialog-text" for="taskColor">&#8203 &#8203 &#8203 &#8203 Cor da Tarefa:</label>
-      <input type="color" id="taskColor" value="#ff0000">
-
-      <br>
-      <br>
-      <br>
-      <button class="dialog-button" onclick="addTask()">Adicionar</button>
-      <button class="dialog-button" onclick="closeDialog()">Cancelar</button>
+<!--Card expandido-->
+<div id="cardEx" class="cardEx">
+  <div class="cardEx-content flex-CR">
+    <div><img class="logo" src="Images/logo positiva vertical.png" alt=""></div>
+    
+    <div class="flex-R">
+      
+      <div class="containerL">
+        <div id="responsavel" class="flex-C">
+          <p class="textCard">Responsável</p> 
+        </div>
+        <br>
+        <div id="atividade" class="flex-C">
+          <p class="textCard">Atividades</p> 
+        </div>
+        <br>
+        <div id="descricao" class="flex-C">
+          <p class="textCard">Descrição</p> 
+        </div>
+        <br>
+        <div id="data">
+          
+        </div>
+      </div>
+      <div class="containerR" id="containerR">
+        <div id="setores" class="flex-C">
+          <p class="textCard">Setores</p>
+        </div>
+      </div>
+    </div>
+    <div id="cardEx-content">
+      <button class="exitCard" onclick="closeContainer()">X</button>
+    </div>
   </div>
 </div>
+
 
 <!--Card expandido-->
 <div id="cardEx" class="cardEx">
@@ -114,6 +132,10 @@
           <p class="textCard">Responsável</p> 
         </div>
         <br>
+        <div id="atividade" class="flex-C">
+          <p class="textCard">Atividades</p> 
+        </div>
+        <br>
         <div id="descricao" class="flex-C">
           <p class="textCard">Descrição</p> 
         </div>
@@ -121,10 +143,7 @@
         <div id="data">
           
         </div>
-        <br>
-        <div id="atividade" class="flex-C">
-          <p class="textCard">Atividades</p> 
-        </div>
+        
         
         
       </div>

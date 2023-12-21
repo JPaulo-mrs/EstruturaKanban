@@ -1,9 +1,17 @@
+var corTitulo;
+var botaoAdm;
+var botaoGep;
+var botaoMkt;
+var botaoPjt;
+var botaoPres;
+var botaoCom;
+var Card;
 
 function containerCard(clickedElement) {
   document.getElementById("cardEx").style.display = "block";
-
+  Card = clickedElement;
   var textTitulo = clickedElement.querySelector(".tasktext").innerText;
-  var titulo = document.createElement("h1");
+  var titulo = document.createElement("textarea");
   titulo.className = "tituloCard";
   titulo.id = "tituloCard";
   titulo.textContent = textTitulo;
@@ -25,7 +33,7 @@ function containerCard(clickedElement) {
   {
     comentario = document.createElement("div");
     comentario.className = "comentario";
-    comentario.id = "comentario"+textTitulo;
+    comentario.id = "comentario";
     comentario.style.display = "none";
     clickedElement.appendChild(comentario);
   }
@@ -40,14 +48,15 @@ function containerCard(clickedElement) {
   {
     ativ = clickedElement.querySelector(".atividade").innerText;
     boxAtiv.textContent = ativ;
+    console.log("pres1");
   }
   else
   {
     ativ = document.createElement("div");
     ativ.className = "atividade";
-    ativ.id = "atividade"+textTitulo;
     ativ.style.display = "none";
     clickedElement.appendChild(ativ);
+    console.log("pres");
   }
   //criando a box de responsavel
   var boxResp = document.createElement("textarea");
@@ -65,7 +74,6 @@ function containerCard(clickedElement) {
   {
     responsavel = document.createElement("div");
     responsavel.className = "responsavel";
-    responsavel.id = "responsavel"+textTitulo;
     responsavel.style.display = "none";
     clickedElement.appendChild(responsavel);
   }
@@ -73,7 +81,7 @@ function containerCard(clickedElement) {
   //criando input de calendario
   var inputCalendario = document.createElement("input");
   inputCalendario.className = "data";
-  inputCalendario.id = "calendario";
+  inputCalendario.id = "InputCalendario";
   inputCalendario.type = "date";
   var local5 = document.getElementById("data");
   local5.appendChild(inputCalendario);
@@ -89,35 +97,35 @@ function containerCard(clickedElement) {
     inputCalendario.value = "aaaa-mm-dd";
     calendario = document.createElement("div");
     calendario.className = "calendario";
-    calendario.id = "calendario"+textTitulo;
+    calendario.id = "calendario";
     calendario.style.display = "none";
     clickedElement.appendChild(calendario);
   }
 
   //criando botão adm fin
-  var botaoAdm = document.createElement("button");
+  botaoAdm = document.createElement("button");
   criarBotao(botaoAdm, "Adm Fin");
-  var botaoMkt = document.createElement("button");
+  botaoMkt = document.createElement("button");
   criarBotao(botaoMkt, "Marketing");
-  var botaoPres = document.createElement("button");
+  botaoPres = document.createElement("button");
   criarBotao(botaoPres, "Presidência");
-  var botaoGep = document.createElement("button");
+  botaoGep = document.createElement("button");
   criarBotao(botaoGep, "GEP");
-  var botaoPjt = document.createElement("button");
+  botaoPjt = document.createElement("button");
   criarBotao(botaoPjt, "Projetos");
-  var botaoCom = document.createElement("button");
+  botaoCom = document.createElement("button");
   criarBotao(botaoCom, "Comercial");
-  var corTitulo = clickedElement.querySelector(".taskCircle").style.backgroundColor;
-  switch(corTitulo)
+  corTitulo = clickedElement.querySelector(".taskCircle");
+  switch(corTitulo.style.backgroundColor)
   {
     case "rgb(139, 95, 164)":
       console.log("pres");
       botaoPres.style.backgroundColor = "rgb(139, 95, 164)";
       botaoPres.value = "ativado";
       break;
-    case "rgb(115, 115, 115)":
+    case "rgb(73, 87, 102)":
       console.log("Adm");
-      botaoAdm.style.backgroundColor = "rgb(115, 115, 115)";
+      botaoAdm.style.backgroundColor = "rgb(73, 87, 102)";
       botaoAdm.value = "ativado";
       break;
     case "rgb(246, 165, 45)":
@@ -125,9 +133,9 @@ function containerCard(clickedElement) {
       botaoMkt.style.backgroundColor = "rgb(246, 165, 45)";
       botaoMkt.value = "ativado";
       break;
-    case "rgb(255, 49, 49)":
+    case "rgb(229, 51, 36)":
       console.log("GEP");
-      botaoGep.style.backgroundColor = "rgb(255, 49, 49)";
+      botaoGep.style.backgroundColor = "rgb(229, 51, 36)";
       botaoGep.value = "ativado";
       break;
     case "rgb(47, 153, 61)":
@@ -135,9 +143,9 @@ function containerCard(clickedElement) {
       botaoPjt.style.backgroundColor = "rgb(47, 153, 61)";
       botaoPjt.value = "ativado";
       break;
-    case "rgb(0, 151, 178)":
+    case "rgb(41, 219, 226)":
       console.log("Com");
-      botaoCom.style.backgroundColor = "rgb(0, 151, 178)";
+      botaoCom.style.backgroundColor = "rgb(41, 219, 226)";
       botaoCom.value = "ativado";
       break;
   }
@@ -147,35 +155,34 @@ function containerCard(clickedElement) {
 function closeContainer() {
   // Obtém o elemento da caixa de diálogo pelo ID e define o estilo de exibição como "none"
   document.getElementById("cardEx").style.display = "none";
-
-  var titulo = document.getElementById("tituloCard").innerText;
+  var titulo = document.getElementById("tituloCard").value;
   document.getElementById("tituloCard").remove();
-
+  Card.querySelector(".tasktext").textContent = titulo;  
   var textComent = document.getElementById("boxComentario").value;
   document.getElementById("boxComentario").remove();
-  var comentario = document.getElementById("comentario"+titulo);
+  var comentario = Card.querySelector(".comentario");
   comentario.textContent = textComent;
 
   var textAtiv = document.getElementById("boxAtiv").value;
   document.getElementById("boxAtiv").remove();
-  var atividade = document.getElementById("atividade"+titulo);
+  var atividade = Card.querySelector(".atividade");
   atividade.textContent = textAtiv;
 
   var textResp = document.getElementById("boxResponsavel").value;
   document.getElementById("boxResponsavel").remove();
-  var responsavel = document.getElementById("responsavel"+titulo);
+  var responsavel = Card.querySelector(".responsavel");
   responsavel.textContent = textResp;
 
   var data = document.getElementById("calendario").value;
-  document.getElementById("calendario").remove();
-  var calendario = document.getElementById("calendario"+titulo);
-  calendario.textContent = data;
+  document.getElementById("InputCalendario").remove();
+  Card.querySelector(".calendario").textContent = data;
 
   var lista = document.getElementsByClassName("setorButton");
   for(var i = lista.length - 1; i >= 0; i--)
   {
     lista[i].remove()
   }
+  
 }
 
 function criarBotao(nomeBotao, name)
@@ -184,8 +191,8 @@ function criarBotao(nomeBotao, name)
   var espaco = document.createElement("br");
   espaco.className = "setorButton";
   local.appendChild(espaco);
-  nomeBotao.className = "setorButton";
-  //newTaskDiv.setAttribute('onclick', 'containerCard(this)');
+  nomeBotao.className = "setorButton "+name;
+  nomeBotao.setAttribute('onclick', 'mudar(this)');
   local.appendChild(nomeBotao);
   var buttonText = document.createElement("p");
   buttonText.className = "setortext";
@@ -193,61 +200,64 @@ function criarBotao(nomeBotao, name)
   nomeBotao.appendChild(buttonText);
 }
 
-
-
-/*inutilizado temporariamente
-function mudaCor(elemento, corAtual)
-{
-  if(elemento.value === "ativado")
+function mudar(elemento) {
+  switch(elemento.className)
   {
-    switch(elemento.className)
-    {
-      case "admCard":
+    case "setorButton Adm Fin":
+      corTitulo.style.backgroundColor = "rgb(73, 87, 102)";
+      botaoAdm.style.backgroundColor = "rgb(73, 87, 102)";
+      botaoMkt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoGep.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoCom.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPjt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPres.style.backgroundColor = "rgb(217, 217, 217)";
+    break;
+    case "setorButton Marketing":
+      corTitulo.style.backgroundColor = "rgb(246, 165, 45)";
+      botaoMkt.style.backgroundColor = "rgb(246, 165, 45)";
+      botaoAdm.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoGep.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoCom.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPjt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPres.style.backgroundColor = "rgb(217, 217, 217)";
+
+    break;
+    case "setorButton GEP":
+      corTitulo.style.backgroundColor = "rgb(229, 51, 36)";
+      botaoAdm.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoMkt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoGep.style.backgroundColor = "rgb(229, 51, 36)";
+      botaoCom.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPjt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPres.style.backgroundColor = "rgb(217, 217, 217)";
+    break;
+    case "setorButton Comercial":
+      corTitulo.style.backgroundColor = "rgb(41, 219, 226)";
+      botaoCom.style.backgroundColor = "rgb(41, 219, 226)";
+      botaoAdm.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoMkt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoGep.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPjt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPres.style.backgroundColor = "rgb(217, 217, 217)";
+    break;
+    case "setorButton Projetos":
+      corTitulo.style.backgroundColor = "rgb(47, 153, 61)";
+      botaoPjt.style.backgroundColor = "rgb(47, 153, 61)";
+      botaoAdm.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoMkt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoGep.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoCom.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPres.style.backgroundColor = "rgb(217, 217, 217)";
+    break;
+    case "setorButton Presidência":
+      corTitulo.style.backgroundColor = "rgb(139, 95, 164)";
       botaoPres.style.backgroundColor = "rgb(139, 95, 164)";
-      botaoPres.value = "ativado";
-      break;
-      case "mktCard":
-        elemento.style.backgroundImage = imagesOff[3];
-      break;
-      case "presCard":
-        elemento.style.backgroundImage = imagesOff[5];
-      break;
-      case "comCard":
-        elemento.style.backgroundImage = imagesOff[1];
-      break;
-      case "pjtCard":
-        elemento.style.backgroundImage = imagesOff[4];
-      break;
-      case "gepCard":
-        elemento.style.backgroundImage = imagesOff[2];
-      break;
-    }
-    elemento.value = "desativado";
+      botaoAdm.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoMkt.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoGep.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoCom.style.backgroundColor = "rgb(217, 217, 217)";
+      botaoPjt.style.backgroundColor = "rgb(217, 217, 217)";
+    break;
   }
-  else
-  {
-    switch(elemento.className)
-    {
-      case "admCard":
-        elemento.style.backgroundImage = imagesOn[0];
-      break;
-      case "mktCard":
-        elemento.style.backgroundImage = imagesOn[3];
-      break;
-      case "presCard":
-        elemento.style.backgroundImage = imagesOn[5];
-      break;
-      case "comCard":
-        elemento.style.backgroundImage = imagesOn[1];
-      break;
-      case "pjtCard":
-        elemento.style.backgroundImage = imagesOn[4];
-      break;
-      case "gepCard":
-        elemento.style.backgroundImage = imagesOn[2];
-      break;
-    }
-    elemento.value = "ativado";
-  }
-}*/
+}
 
