@@ -261,3 +261,8 @@ function mudar(elemento) {
   }
 }
 
+function deletar()
+{
+  closeContainer();
+  Card.remove();
+}

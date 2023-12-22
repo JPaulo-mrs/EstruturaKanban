@@ -89,7 +89,13 @@
 <!--Card expandido-->
 <div id="cardEx" class="cardEx">
   <div class="cardEx-content flex-CR">
-    <div><img class="logo" src="Images/logo positiva vertical.png" alt=""></div>
+    
+    <div>
+      <img class="logo" src="Images/logo positiva vertical.png" alt="">
+      <button class="removeButton" onclick="deletar()">
+        <img class="deletarImg" src="Images/lixo.png" alt="">
+      </button>
+    </div>
     
     <div class="flex-R">
       
@@ -117,7 +123,9 @@
       </div>
     </div>
     <div id="cardEx-content">
-      <button class="exitCard" onclick="closeContainer()">X</button>
+      <button class="exitCard" onclick="closeContainer()">
+        <img class="deletarImg" src="Images/sair.png" alt="">
+      </button>
     </div>
   </div>
 </div>
