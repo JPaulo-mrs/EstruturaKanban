@@ -33,7 +33,7 @@
       <div class="lanes">
         
         <!-- Coluna BACKLOG -->
-        <div class="coluna" id="todo-lane">
+        <div class="coluna" id="Backlog">
           <h3 class="columnHeader">BACKLOG</h3>
 
           <!-- Lista de tarefas -->
@@ -70,15 +70,15 @@
         </div>
 
          <!-- Outras colunas (EM ANDAMENTO, CONCLUÍDO, PENDÊNCIAS) -->
-        <div class="coluna">
+        <div class="coluna" id="Em andamento">
           <h3 class="columnHeader">EM ANDAMENTO</h3>
         </div>
 
-        <div class="coluna">
+        <div class="coluna" id="Review">
           <h3 class="columnHeader">REVIEW</h3>
         </div>
 
-        <div class="coluna">
+        <div class="coluna" id="Concluido">
           <h3 class="columnHeader">CONCLUÍDO</h3>
         </div>
       </div>
@@ -89,14 +89,12 @@
 <!--Card expandido-->
 <div id="cardEx" class="cardEx">
   <div class="cardEx-content flex-CR">
-    
     <div>
       <img class="logo" src="Images/logo positiva vertical.png" alt="">
-      <button class="removeButton" onclick="deletar()">
+      <button class="removeButton" onclick="confirmarBox()">
         <img class="deletarImg" src="Images/lixo.png" alt="">
       </button>
     </div>
-    
     <div class="flex-R">
       
       <div class="containerL">
@@ -119,6 +117,16 @@
       <div class="containerR" id="containerR">
         <div id="setores" class="flex-C">
           <p class="textCard">Setores</p>
+          
+        </div>
+        <div id="MudarColuna" class="flex-C">
+          <br>
+          <p class="textCard">Coluna</p>
+          <br>
+          <div class="flex-R backgroundColuna" id="botaoColuna">
+              
+          </div>
+          
         </div>
       </div>
     </div>
@@ -130,45 +138,19 @@
   </div>
 </div>
 
-
-<!--Card expandido-->
-<div id="cardEx" class="cardEx">
-  <div class="cardEx-content flex-CR">
-    <div class="flex-R">
-      <div class="containerL">
-        <div id="responsavel" class="flex-C">
-          <p class="textCard">Responsável</p> 
-        </div>
-        <br>
-        <div id="atividade" class="flex-C">
-          <p class="textCard">Atividades</p> 
-        </div>
-        <br>
-        <div id="descricao" class="flex-C">
-          <p class="textCard">Descrição</p> 
-        </div>
-        <br>
-        <div id="data">
-          
-        </div>
-        
-        
-        
-      </div>
-
-      <div class="containerR">
-        <div id="setores" class="flex-C">
-          <p class="textCard">Setores</p>
-        </div>
-      </div>
+<div id="confirmar" class="confirmar">
+  <div class="confirmar-content flex-C">
+    <div>
+      <p class="textConfirmar">Deseja deletar a tarefa?</h1>
     </div>
-    <div id="cardEx-content">
-      <button class="exitCard" onclick="closeContainer()">X</button>
+    <br>
+    <div class="flex-R">
+      <button class="confirmarButton" onclick="deletar()">
+        <p class="setortext">Deletar</p>
+      </button>
+      <button class="cancelarButton" onclick="cancelar()">
+        <p class="setortext">Cancelar</p>
+      </button>
     </div>
   </div>
-</div>
-
-<div class="flex">
-  
-  
 </div>
