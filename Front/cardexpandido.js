@@ -8,6 +8,55 @@ var botaoCom;
 var Card;
 var ColunaCard;
 
+//Adicionar ouvintes para touchscreen
+let touchMoved = false;
+
+function attachTouchListeners() {
+  const tasks = document.querySelectorAll('.item');
+  
+  tasks.forEach(task => {
+    task.addEventListener('touchstart', function(event) {
+      touchMoved = false; // Reinicie a variável para falso a cada novo toque
+    });
+
+    task.addEventListener('touchmove', function(event) {
+      touchMoved = true; // Se o dedo se mover, defina como true
+    });
+
+    task.addEventListener('touchend', function(event) {
+      if (!touchMoved) { // Se o dedo não se moveu (ou seja, foi um toque simples)
+        event.preventDefault(); // Prevenindo comportamentos padrão
+        containerCard(this); // Chame sua função containerCard com a tarefa clicada
+      }
+    }, { passive: false }); // Permitindo prevenção de comportamento padrão
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  attachTouchListeners();
+});
+
+function attachCloseListeners() {
+  const closeButton = document.querySelector('#cardEx .closeButton'); // Certifique-se de ter uma classe ou ID para seu botão de fechar
+  
+  closeButton.addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Prevenindo comportamentos padrão
+    closeContainer();
+  }, { passive: false }); // Permitindo prevenção de comportamento padrão
+}
+
+function attachCloseListeners() {
+  const closeButton = document.querySelector('#cardEx .closeButton'); // Certifique-se de ter uma classe ou ID para seu botão de fechar
+  
+  closeButton.addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Prevenindo comportamentos padrão
+    closeContainer();
+  }, { passive: false }); // Permitindo prevenção de comportamento padrão
+}
+
+
+
 function botaoColuna()
 {
   var local = document.getElementById("botaoColuna");
@@ -181,10 +230,11 @@ function criarBotao(nomeBotao, name)
   var local = document.getElementById("setores");
   var espaco = document.createElement("br");
   espaco.className = "setorButton";
-  local.appendChild(espaco);
+  
   nomeBotao.className = "setorButton "+name;
   nomeBotao.setAttribute('onclick', 'mudar(this)');
   local.appendChild(nomeBotao);
+  local.appendChild(espaco);
   var buttonText = document.createElement("p");
   buttonText.className = "setortext";
   buttonText.textContent = name;
@@ -192,6 +242,35 @@ function criarBotao(nomeBotao, name)
 }
 
 function containerCard(clickedElement) {
+
+  setTimeout(function() {
+    var element = document.querySelector('.is-dragging');
+
+    if (element) {
+        // Remova a classe 'is-dragging' do elemento
+        element.classList.remove('is-dragging');
+    }
+  }, 400);
+
+  // Início de função para apagar a imagem fantasma do botão
+  var targetNode = document.body; // ou outro elemento alvo
+  var config = { childList: true }; // configuração para observar mudanças na lista de filhos
+
+  var callback = function(mutationsList, observer) {
+      for(var mutation of mutationsList) {
+          if (mutation.type === 'childList') {
+              // verifica se um nó filho foi adicionado
+              if (mutation.addedNodes.length > 0) {
+                  var lastAddedElement = mutation.addedNodes[0];
+                  lastAddedElement.remove(); // remove o último elemento adicionado
+                  observer.disconnect();
+              }
+          }
+      }
+  };
+  var observer = new MutationObserver(callback);
+  observer.observe(targetNode, config);
+
   document.getElementById("cardEx").style.display = "block";
   var localDestino
   //salvando na variavel card a tarefa atual

@@ -8,9 +8,15 @@
     <link rel="shortcut icon" type="image/jpg" href="Images/logo positiva vertical.png"/>
     <!-- Inclusão do arquivo de estilo CSS -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Inclusão dos arquivos de estilo CSS -->
+    <link rel="stylesheet" href="style_tablet.css" />
+    <link rel="stylesheet" href="style_mobile.css" />
 
     <!-- Inclusão do script para funcionalidades de arrastar e soltar -->
     <script src="dragdrop.js" defer></script>
+
+    <!-- Inclusão do script para arrastar e soltar para dispositivos moveis -->
+    <script src="DragDropTouch.js"></script>
 
     <!-- Inclusão do script para funcionalidades do botão de adicionar tarefa -->
     <script src="taskbutton.js" defer></script>
@@ -22,8 +28,13 @@
     <!-- Conteúdo principal -->
     
     <div class="board">
+      <button class="exitLogin" onclick="closeContainer()">
+        <img class="deletarImg" src="Images/sairL.png" alt="">
+      </button>
       <!-- Logo da Focus -->
-      <img class="logo-image" src="images/logo negativa vertical.png" alt="Logo Focus Consultoria">
+        <img class="logo-image" src="images/logo negativa vertical.png" alt="Logo Focus Consultoria">
+      
+      
 
       <p class="board-name">QUADRO DE GERENCIAMENTO DE ATIVIDADES</p>
       
@@ -82,6 +93,7 @@
           <h3 class="columnHeader">CONCLUÍDO</h3>
         </div>
       </div>
+      
     </div>
   </body>
 </html>
@@ -120,13 +132,11 @@
           
         </div>
         <div id="MudarColuna" class="flex-C">
-          <br>
           <p class="textCard">Coluna</p>
-          <br>
           <div class="flex-R backgroundColuna" id="botaoColuna">
               
           </div>
-          
+          <br>
         </div>
       </div>
     </div>
